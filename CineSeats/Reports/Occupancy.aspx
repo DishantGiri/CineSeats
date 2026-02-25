@@ -22,7 +22,7 @@
             <asp:Panel ID="pnlResults" runat="server" Visible="false">
                 <div class="row">
                     <div class="col-12">
-                        <h4 class="mb-3">Top 3 Theaters & Halls for this Movie</h4>
+                        <h4 class="mb-3">Top 3 Theaters &amp; Halls for this Movie</h4>
                         <div class="row">
                             <asp:Repeater ID="rptTop3" runat="server">
                                 <ItemTemplate>
@@ -42,7 +42,8 @@
                                                 <div class="progress mt-2"
                                                     style="height: 10px; background: rgba(255,255,255,0.1);">
                                                     <div class="progress-bar bg-primary" role="progressbar"
-                                                        style='width: <%# Eval("OCCUPANCY_PERCENT") %>%'></div>
+                                                        style='<%# GetProgressWidth(Eval("OCCUPANCY_PERCENT")) %>'>
+                                                    </div>
                                                 </div>
                                                 <p class="mt-2 mb-0 small text-muted">
                                                     <%# Eval("SOLD_TICKETS") %> Tickets Sold / <%# Eval("CAPACITY") %>

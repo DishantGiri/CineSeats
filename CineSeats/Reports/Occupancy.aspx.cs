@@ -9,6 +9,12 @@ namespace CineSeats.Reports
 {
     public partial class Occupancy : Page
     {
+        protected global::System.Web.UI.WebControls.DropDownList ddlMovie;
+        protected global::System.Web.UI.WebControls.Button btnAnalyze;
+        protected global::System.Web.UI.WebControls.Panel pnlResults;
+        protected global::System.Web.UI.WebControls.Repeater rptTop3;
+        protected global::System.Web.UI.WebControls.GridView gvAllOccupancy;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -37,11 +43,6 @@ namespace CineSeats.Reports
 
         private void LoadOccupancyReport(int movieId)
         {
-            // Query selects occupancy per Hall for the given movie.
-            // Joins Showtimes -> Halls -> Theater.
-            // Only counts tickets with 'Paid' status (we'll filter status in TICKET or join with PAYMENT)
-            // CASE STUDY: "Only paid tickets would be counted as seat occupancy."
-            
             string query = @"
                 SELECT * FROM (
                     SELECT 
@@ -63,7 +64,7 @@ namespace CineSeats.Reports
                 ) ORDER BY OCCUPANCY_PERCENT DESC";
 
             DataTable dt = DatabaseHelper.ExecuteQuery(query, new OracleParameter[] { new OracleParameter("mid", movieId) });
-            
+
             // Top 3 for repeater
             DataTable top3 = dt.Clone();
             for (int i = 0; i < dt.Rows.Count && i < 3; i++)
@@ -76,6 +77,16 @@ namespace CineSeats.Reports
             // All for grid
             gvAllOccupancy.DataSource = dt;
             gvAllOccupancy.DataBind();
+        }
+
+        protected string GetProgressWidth(object occupancyPercent)
+        {
+            if (occupancyPercent == null || occupancyPercent == DBNull.Value)
+                return "width: 0%;";
+
+            double val = Convert.ToDouble(occupancyPercent);
+            val = Math.Min(100, Math.Max(0, val)); // clamp between 0–100
+            return $"width: {val}%;";
         }
     }
 }
