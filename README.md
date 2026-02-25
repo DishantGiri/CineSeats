@@ -1,0 +1,2 @@
+# CineSeats
+Cinema Management System
