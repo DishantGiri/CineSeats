@@ -39,16 +39,37 @@
 
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" runat="server" href="~/">Application name</a>
+                <a class="navbar-brand" runat="server" href="~/">CineSeats</a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">About</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Dashboard</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="manageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Management
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="manageDropdown">
+                                <li><a class="dropdown-item" runat="server" href="~/ManageUsers">Users</a></li>
+                                <li><a class="dropdown-item" runat="server" href="~/ManageTheaters">Theaters</a></li>
+                                <li><a class="dropdown-item" runat="server" href="~/ManageHalls">Halls</a></li>
+                                <li><a class="dropdown-item" runat="server" href="~/ManageMovies">Movies</a></li>
+                                <li><a class="dropdown-item" runat="server" href="~/ManageShowtimes">Showtimes</a></li>
+                                <li><a class="dropdown-item" runat="server" href="~/ManageTickets">Tickets</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="reportsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Reports
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="reportsDropdown">
+                                <li><a class="dropdown-item" runat="server" href="~/Reports/UserTickets">User Tickets</a></li>
+                                <li><a class="dropdown-item" runat="server" href="~/Reports/TheaterMovies">Theater Movies</a></li>
+                                <li><a class="dropdown-item" runat="server" href="~/Reports/Occupancy">Occupancy Analytics</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
