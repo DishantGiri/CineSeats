@@ -52,30 +52,34 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card p-3">
-                        <asp:GridView ID="gvShowtimes" runat="server" AutoGenerateColumns="False" CssClass="grid-view"
-                            OnRowCommand="gvShowtimes_RowCommand" OnRowDeleting="gvShowtimes_RowDeleting"
-                            DataKeyNames="SHOWTIME_ID">
-                            <Columns>
-                                <asp:BoundField DataField="SHOWTIME_ID" HeaderText="ID" />
-                                <asp:BoundField DataField="TITLE" HeaderText="Movie" />
-                                <asp:BoundField DataField="HALL_NAME" HeaderText="Hall" />
-                                <asp:BoundField DataField="SHOW_DATE" HeaderText="Date"
-                                    DataFormatString="{0:yyyy-MM-dd}" />
-                                <asp:BoundField DataField="SHOW_TIME" HeaderText="Time" />
-                                <asp:BoundField DataField="TICKET_PRICE" HeaderText="Price" />
-                                <asp:TemplateField HeaderText="Actions">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="btnEdit" runat="server" CommandName="EditShowtime"
-                                            CommandArgument='<%# Eval("SHOWTIME_ID") %>'
-                                            CssClass="btn btn-sm btn-outline-info">Edit</asp:LinkButton>
-                                        <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete"
-                                            CssClass="btn btn-sm btn-outline-danger"
-                                            OnClientClick="return confirm('Delete this showtime?');">Delete
-                                        </asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
+                        <div class="table-responsive">
+                            <asp:GridView ID="gvShowtimes" runat="server" AutoGenerateColumns="False"
+                                CssClass="grid-view table-borderless" OnRowCommand="gvShowtimes_RowCommand"
+                                OnRowDeleting="gvShowtimes_RowDeleting" DataKeyNames="SHOWTIME_ID" AllowPaging="True"
+                                PageSize="5" OnPageIndexChanging="gvShowtimes_PageIndexChanging">
+                                <PagerStyle CssClass="grid-pager" />
+                                <Columns>
+                                    <asp:BoundField DataField="SHOWTIME_ID" HeaderText="ID" />
+                                    <asp:BoundField DataField="TITLE" HeaderText="Movie" />
+                                    <asp:BoundField DataField="HALL_NAME" HeaderText="Hall" />
+                                    <asp:BoundField DataField="SHOW_DATE" HeaderText="Date"
+                                        DataFormatString="{0:yyyy-MM-dd}" />
+                                    <asp:BoundField DataField="SHOW_TIME" HeaderText="Time" />
+                                    <asp:BoundField DataField="TICKET_PRICE" HeaderText="Price" />
+                                    <asp:TemplateField HeaderText="Actions">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="btnEdit" runat="server" CommandName="EditShowtime"
+                                                CommandArgument='<%# Eval("SHOWTIME_ID") %>'
+                                                CssClass="btn btn-sm btn-outline-info">Edit</asp:LinkButton>
+                                            <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete"
+                                                CssClass="btn btn-sm btn-outline-danger"
+                                                OnClientClick="return confirm('Delete this showtime?');">Delete
+                                            </asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+                        </div>
                     </div>
                 </div>
             </div>

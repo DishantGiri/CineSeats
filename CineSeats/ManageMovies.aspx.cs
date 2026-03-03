@@ -9,6 +9,15 @@ namespace CineSeats
 {
     public partial class ManageMovies : Page
     {
+        protected global::System.Web.UI.WebControls.GridView gvMovies;
+        protected global::System.Web.UI.WebControls.TextBox txtReleaseDate;
+        protected global::System.Web.UI.WebControls.HiddenField hfMovieId;
+        protected global::System.Web.UI.WebControls.TextBox txtTitle;
+        protected global::System.Web.UI.WebControls.TextBox txtDuration;
+        protected global::System.Web.UI.WebControls.TextBox txtLanguage;
+        protected global::System.Web.UI.WebControls.TextBox txtGenre;
+        protected global::System.Web.UI.WebControls.Button btnSave;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -100,6 +109,12 @@ namespace CineSeats
             {
                 Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "") + "');</script>");
             }
+        }
+
+        protected void gvMovies_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvMovies.PageIndex = e.NewPageIndex;
+            LoadMovies();
         }
 
         protected void btnClear_Click(object sender, EventArgs e)

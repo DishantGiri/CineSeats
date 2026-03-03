@@ -42,27 +42,32 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card p-3">
-                        <asp:GridView ID="gvHalls" runat="server" AutoGenerateColumns="False" CssClass="grid-view"
-                            OnRowCommand="gvHalls_RowCommand" OnRowDeleting="gvHalls_RowDeleting"
-                            DataKeyNames="HALL_ID">
-                            <Columns>
-                                <asp:BoundField DataField="HALL_ID" HeaderText="ID" />
-                                <asp:BoundField DataField="THEATER_NAME" HeaderText="Theater" />
-                                <asp:BoundField DataField="HALL_NAME" HeaderText="Hall Name" />
-                                <asp:BoundField DataField="CAPACITY" HeaderText="Capacity" />
-                                <asp:BoundField DataField="HALL_TYPE" HeaderText="Type" />
-                                <asp:TemplateField HeaderText="Actions">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="btnEdit" runat="server" CommandName="EditHall"
-                                            CommandArgument='<%# Eval("HALL_ID") %>'
-                                            CssClass="btn btn-sm btn-outline-info">Edit</asp:LinkButton>
-                                        <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete"
-                                            CssClass="btn btn-sm btn-outline-danger"
-                                            OnClientClick="return confirm('Delete this hall?');">Delete</asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
+                        <div class="table-responsive">
+                            <asp:GridView ID="gvHalls" runat="server" AutoGenerateColumns="False"
+                                CssClass="grid-view table-borderless" OnRowCommand="gvHalls_RowCommand"
+                                OnRowDeleting="gvHalls_RowDeleting" DataKeyNames="HALL_ID" AllowPaging="True"
+                                PageSize="5" OnPageIndexChanging="gvHalls_PageIndexChanging">
+                                <PagerStyle CssClass="grid-pager" />
+                                <Columns>
+                                    <asp:BoundField DataField="HALL_ID" HeaderText="ID" />
+                                    <asp:BoundField DataField="THEATER_NAME" HeaderText="Theater" />
+                                    <asp:BoundField DataField="HALL_NAME" HeaderText="Hall Name" />
+                                    <asp:BoundField DataField="CAPACITY" HeaderText="Capacity" />
+                                    <asp:BoundField DataField="HALL_TYPE" HeaderText="Type" />
+                                    <asp:TemplateField HeaderText="Actions">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="btnEdit" runat="server" CommandName="EditHall"
+                                                CommandArgument='<%# Eval("HALL_ID") %>'
+                                                CssClass="btn btn-sm btn-outline-info">Edit</asp:LinkButton>
+                                            <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete"
+                                                CssClass="btn btn-sm btn-outline-danger"
+                                                OnClientClick="return confirm('Delete this hall?');">Delete
+                                            </asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+                        </div>
                     </div>
                 </div>
             </div>

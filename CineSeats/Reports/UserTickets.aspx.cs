@@ -9,6 +9,12 @@ namespace CineSeats.Reports
 {
     public partial class UserTickets : Page
     {
+protected global::System.Web.UI.WebControls.DropDownList ddlUser;
+protected global::System.Web.UI.WebControls.Panel pnlReport;
+protected global::System.Web.UI.WebControls.Literal litUserName;
+protected global::System.Web.UI.WebControls.Literal litEmail;
+protected global::System.Web.UI.WebControls.Literal litPhone;
+protected global::System.Web.UI.WebControls.GridView gvUserTickets;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -60,6 +66,14 @@ namespace CineSeats.Reports
             
             gvUserTickets.DataSource = DatabaseHelper.ExecuteQuery(query, new OracleParameter[] { new OracleParameter("uid", userId) });
             gvUserTickets.DataBind();
+        }
+
+        protected void gvUserTickets_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            if (string.IsNullOrEmpty(ddlUser.SelectedValue)) return;
+            
+            gvUserTickets.PageIndex = e.NewPageIndex;
+            LoadUserTickets(int.Parse(ddlUser.SelectedValue));
         }
     }
 }

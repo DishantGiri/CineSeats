@@ -40,27 +40,31 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card p-3">
-                        <asp:GridView ID="gvTickets" runat="server" AutoGenerateColumns="False" CssClass="grid-view"
-                            OnRowCommand="gvTickets_RowCommand" OnRowDeleting="gvTickets_RowDeleting"
-                            DataKeyNames="TICKET_ID">
-                            <Columns>
-                                <asp:BoundField DataField="TICKET_ID" HeaderText="Ticket ID" />
-                                <asp:BoundField DataField="BOOKING_ID" HeaderText="Booking ID" />
-                                <asp:BoundField DataField="SEAT_NUMBER" HeaderText="Seat" />
-                                <asp:BoundField DataField="TICKET_STATUS" HeaderText="Status" />
-                                <asp:TemplateField HeaderText="Actions">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="btnEdit" runat="server" CommandName="EditTicket"
-                                            CommandArgument='<%# Eval("TICKET_ID") %>'
-                                            CssClass="btn btn-sm btn-outline-info">Edit</asp:LinkButton>
-                                        <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete"
-                                            CssClass="btn btn-sm btn-outline-danger"
-                                            OnClientClick="return confirm('Delete this ticket?');">Delete
-                                        </asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
+                        <div class="table-responsive">
+                            <asp:GridView ID="gvTickets" runat="server" AutoGenerateColumns="False"
+                                CssClass="grid-view table-borderless" OnRowCommand="gvTickets_RowCommand"
+                                OnRowDeleting="gvTickets_RowDeleting" DataKeyNames="TICKET_ID" AllowPaging="True"
+                                PageSize="5" OnPageIndexChanging="gvTickets_PageIndexChanging">
+                                <PagerStyle CssClass="grid-pager" />
+                                <Columns>
+                                    <asp:BoundField DataField="TICKET_ID" HeaderText="Ticket ID" />
+                                    <asp:BoundField DataField="BOOKING_ID" HeaderText="Booking ID" />
+                                    <asp:BoundField DataField="SEAT_NUMBER" HeaderText="Seat" />
+                                    <asp:BoundField DataField="TICKET_STATUS" HeaderText="Status" />
+                                    <asp:TemplateField HeaderText="Actions">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="btnEdit" runat="server" CommandName="EditTicket"
+                                                CommandArgument='<%# Eval("TICKET_ID") %>'
+                                                CssClass="btn btn-sm btn-outline-info">Edit</asp:LinkButton>
+                                            <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete"
+                                                CssClass="btn btn-sm btn-outline-danger"
+                                                OnClientClick="return confirm('Delete this ticket?');">Delete
+                                            </asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+                        </div>
                     </div>
                 </div>
             </div>

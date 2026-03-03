@@ -1,0 +1,8 @@
+﻿C:\Users\TOSHIBA\source\repos\CineSeats\CineSeats\Default.aspx.cs
+C:\Users\TOSHIBA\source\repos\CineSeats\CineSeats\Reports\UserTickets.aspx.cs
+C:\Users\TOSHIBA\source\repos\CineSeats\CineSeats\ManageHalls.aspx.cs
+C:\Users\TOSHIBA\source\repos\CineSeats\CineSeats\ManageShowtimes.aspx.cs
+C:\Users\TOSHIBA\source\repos\CineSeats\CineSeats\ManageTheaters.aspx.cs
+C:\Users\TOSHIBA\source\repos\CineSeats\CineSeats\ManageTickets.aspx.cs
+C:\Users\TOSHIBA\source\repos\CineSeats\CineSeats\ManageMovies.aspx.cs
+C:\Users\TOSHIBA\source\repos\CineSeats\CineSeats\Reports\TheaterMovies.aspx.cs

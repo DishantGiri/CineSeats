@@ -9,6 +9,13 @@ namespace CineSeats
 {
     public partial class ManageTickets : Page
     {
+        protected global::System.Web.UI.WebControls.GridView gvTickets;
+        protected global::System.Web.UI.WebControls.HiddenField hfTicketId;
+        protected global::System.Web.UI.WebControls.TextBox txtBookingId;
+        protected global::System.Web.UI.WebControls.TextBox txtSeatNumber;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
+        protected global::System.Web.UI.WebControls.Button btnSave;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -92,6 +99,12 @@ namespace CineSeats
             {
                 Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "") + "');</script>");
             }
+        }
+
+        protected void gvTickets_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvTickets.PageIndex = e.NewPageIndex;
+            LoadTickets();
         }
 
         protected void btnClear_Click(object sender, EventArgs e)

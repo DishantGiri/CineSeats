@@ -9,6 +9,14 @@ namespace CineSeats
 {
     public partial class ManageHalls : Page
     {
+        protected global::System.Web.UI.WebControls.DropDownList ddlTheater;
+        protected global::System.Web.UI.WebControls.GridView gvHalls;
+        protected global::System.Web.UI.WebControls.HiddenField hfHallId;
+        protected global::System.Web.UI.WebControls.TextBox txtHallName;
+        protected global::System.Web.UI.WebControls.TextBox txtCapacity;
+        protected global::System.Web.UI.WebControls.TextBox txtHallType;
+        protected global::System.Web.UI.WebControls.Button btnSave;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -107,6 +115,12 @@ namespace CineSeats
             {
                 Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "") + "');</script>");
             }
+        }
+
+        protected void gvHalls_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvHalls.PageIndex = e.NewPageIndex;
+            LoadHalls();
         }
 
         protected void btnClear_Click(object sender, EventArgs e)

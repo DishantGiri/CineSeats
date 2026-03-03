@@ -79,14 +79,21 @@ namespace CineSeats.Reports
             gvAllOccupancy.DataBind();
         }
 
-        protected string GetProgressWidth(object occupancyPercent)
+        protected void gvAllOccupancy_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            if (string.IsNullOrEmpty(ddlMovie.SelectedValue)) return;
+            gvAllOccupancy.PageIndex = e.NewPageIndex;
+            LoadOccupancyReport(int.Parse(ddlMovie.SelectedValue));
+        }
+
+        public static Unit GetProgressUnit(object occupancyPercent)
         {
             if (occupancyPercent == null || occupancyPercent == DBNull.Value)
-                return "width: 0%;";
-
-            double val = Convert.ToDouble(occupancyPercent);
-            val = Math.Min(100, Math.Max(0, val)); // clamp between 0–100
-            return $"width: {val}%;";
+                return Unit.Percentage(0);
+            double percent = 0;
+            double.TryParse(occupancyPercent.ToString(), out percent);
+            percent = Math.Max(0, Math.Min(percent, 100));
+            return Unit.Percentage(percent);
         }
     }
 }

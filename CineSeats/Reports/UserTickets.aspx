@@ -42,22 +42,27 @@
                     <div class="col-md-8">
                         <div class="card p-3">
                             <h4>Ticket History</h4>
-                            <asp:GridView ID="gvUserTickets" runat="server" AutoGenerateColumns="False"
-                                CssClass="grid-view">
-                                <Columns>
-                                    <asp:BoundField DataField="TICKET_ID" HeaderText="Ticket ID" />
-                                    <asp:BoundField DataField="TITLE" HeaderText="Movie" />
-                                    <asp:BoundField DataField="SHOW_DATE" HeaderText="Show Date"
-                                        DataFormatString="{0:yyyy-MM-dd}" />
-                                    <asp:BoundField DataField="SHOW_TIME" HeaderText="Time" />
-                                    <asp:BoundField DataField="SEAT_NUMBER" HeaderText="Seat" />
-                                    <asp:BoundField DataField="TICKET_STATUS" HeaderText="Status" />
-                                </Columns>
-                                <EmptyDataTemplate>
-                                    <div class="text-center p-3">No tickets found for this user in the last 6 months.
-                                    </div>
-                                </EmptyDataTemplate>
-                            </asp:GridView>
+                            <div class="table-responsive">
+                                <asp:GridView ID="gvUserTickets" runat="server" AutoGenerateColumns="False"
+                                    CssClass="grid-view table-borderless" AllowPaging="True" PageSize="5"
+                                    OnPageIndexChanging="gvUserTickets_PageIndexChanging">
+                                    <PagerStyle CssClass="grid-pager" />
+                                    <Columns>
+                                        <asp:BoundField DataField="TICKET_ID" HeaderText="Ticket ID" />
+                                        <asp:BoundField DataField="TITLE" HeaderText="Movie" />
+                                        <asp:BoundField DataField="SHOW_DATE" HeaderText="Show Date"
+                                            DataFormatString="{0:yyyy-MM-dd}" />
+                                        <asp:BoundField DataField="SHOW_TIME" HeaderText="Time" />
+                                        <asp:BoundField DataField="SEAT_NUMBER" HeaderText="Seat" />
+                                        <asp:BoundField DataField="TICKET_STATUS" HeaderText="Status" />
+                                    </Columns>
+                                    <EmptyDataTemplate>
+                                        <div class="text-center p-3">No tickets found for this user in the last 6
+                                            months.
+                                        </div>
+                                    </EmptyDataTemplate>
+                                </asp:GridView>
+                            </div>
                         </div>
                     </div>
                 </div>

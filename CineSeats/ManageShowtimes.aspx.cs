@@ -9,6 +9,15 @@ namespace CineSeats
 {
     public partial class ManageShowtimes : Page
     {
+protected global::System.Web.UI.WebControls.DropDownList ddlMovie;
+protected global::System.Web.UI.WebControls.DropDownList ddlHall;
+protected global::System.Web.UI.WebControls.GridView gvShowtimes;
+protected global::System.Web.UI.WebControls.HiddenField hfShowtimeId;
+protected global::System.Web.UI.WebControls.TextBox txtShowDate;
+protected global::System.Web.UI.WebControls.TextBox txtShowTime;
+protected global::System.Web.UI.WebControls.TextBox txtPrice;
+protected global::System.Web.UI.WebControls.CheckBox chkIsHoliday;
+protected global::System.Web.UI.WebControls.Button btnSave;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -127,6 +136,12 @@ namespace CineSeats
             {
                 Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "") + "');</script>");
             }
+        }
+
+        protected void gvShowtimes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvShowtimes.PageIndex = e.NewPageIndex;
+            LoadShowtimes();
         }
 
         protected void btnClear_Click(object sender, EventArgs e)

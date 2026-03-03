@@ -9,6 +9,10 @@ namespace CineSeats.Reports
 {
     public partial class TheaterMovies : Page
     {
+        protected global::System.Web.UI.WebControls.DropDownList ddlTheater;
+        protected global::System.Web.UI.WebControls.DropDownList ddlHall;
+        protected global::System.Web.UI.WebControls.GridView gvSchedule;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -44,7 +48,7 @@ namespace CineSeats.Reports
             ddlHall.Items.Insert(0, new ListItem("All Halls", "0"));
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
+        public void LoadData()
         {
             if (string.IsNullOrEmpty(ddlTheater.SelectedValue)) return;
 
@@ -71,6 +75,18 @@ namespace CineSeats.Reports
             query += " ORDER BY s.SHOW_DATE, s.SHOW_TIME";
             gvSchedule.DataSource = DatabaseHelper.ExecuteQuery(query, cmdParams);
             gvSchedule.DataBind();
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            gvSchedule.PageIndex = 0;
+            LoadData();
+        }
+
+        protected void gvSchedule_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvSchedule.PageIndex = e.NewPageIndex;
+            LoadData();
         }
     }
 }

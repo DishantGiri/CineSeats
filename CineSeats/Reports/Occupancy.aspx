@@ -36,14 +36,14 @@
                                                     <%# Eval("HALL_NAME") %>
                                                 </p>
                                                 <span class="stat-value text-primary">
-                                                    <%# Eval("OCCUPANCY_PERCENT", "{0:F1}" ) %>%
+                                                    <%# Eval("OCCUPANCY_PERCENT", "{0:F1}%" ) %>
                                                 </span>
                                                 <span class="stat-label">Seat Occupancy</span>
                                                 <div class="progress mt-2"
                                                     style="height: 10px; background: rgba(255,255,255,0.1);">
-                                                    <div class="progress-bar bg-primary" role="progressbar"
-                                                        style='<%# GetProgressWidth(Eval("OCCUPANCY_PERCENT")) %>'>
-                                                    </div>
+                                                    <asp:Panel runat="server" CssClass="progress-bar bg-primary"
+                                                        Width='<%# GetProgressUnit(Eval("OCCUPANCY_PERCENT")) %>'>
+                                                    </asp:Panel>
                                                 </div>
                                                 <p class="mt-2 mb-0 small text-muted">
                                                     <%# Eval("SOLD_TICKETS") %> Tickets Sold / <%# Eval("CAPACITY") %>
@@ -69,7 +69,7 @@
                             <asp:TemplateField HeaderText="Occupancy %">
                                 <ItemTemplate>
                                     <strong>
-                                        <%# Eval("OCCUPANCY_PERCENT", "{0:F1}" ) %>%
+                                        <%# Eval("OCCUPANCY_PERCENT", "{0:F1}%" ) %>
                                     </strong>
                                 </ItemTemplate>
                             </asp:TemplateField>

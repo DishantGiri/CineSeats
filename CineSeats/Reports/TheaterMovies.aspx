@@ -26,27 +26,33 @@
             </div>
 
             <div class="card p-3">
-                <asp:GridView ID="gvSchedule" runat="server" AutoGenerateColumns="False" CssClass="grid-view">
-                    <Columns>
-                        <asp:BoundField DataField="TITLE" HeaderText="Movie Title" />
-                        <asp:BoundField DataField="LANGUAGE" HeaderText="Language" />
-                        <asp:BoundField DataField="GENRE" HeaderText="Genre" />
-                        <asp:BoundField DataField="SHOW_DATE" HeaderText="Date" DataFormatString="{0:MMM dd, yyyy}" />
-                        <asp:BoundField DataField="SHOW_TIME" HeaderText="Time" />
-                        <asp:BoundField DataField="TICKET_PRICE" HeaderText="Price" DataFormatString="{0:C}" />
-                        <asp:TemplateField HeaderText="Holiday">
-                            <ItemTemplate>
-                                <span
-                                    class='badge <%# Eval("IS_HOLIDAY").ToString() == "Y" ? "bg-danger" : "bg-success" %>'>
-                                    <%# Eval("IS_HOLIDAY").ToString()=="Y" ? "Yes" : "No" %>
-                                </span>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                    <EmptyDataTemplate>
-                        <div class="text-center p-3">No movies scheduled for this theater/hall.</div>
-                    </EmptyDataTemplate>
-                </asp:GridView>
+                <div class="table-responsive">
+                    <asp:GridView ID="gvSchedule" runat="server" AutoGenerateColumns="False"
+                        CssClass="grid-view table-borderless" AllowPaging="True" PageSize="5"
+                        OnPageIndexChanging="gvSchedule_PageIndexChanging">
+                        <PagerStyle CssClass="grid-pager" />
+                        <Columns>
+                            <asp:BoundField DataField="TITLE" HeaderText="Movie Title" />
+                            <asp:BoundField DataField="LANGUAGE" HeaderText="Language" />
+                            <asp:BoundField DataField="GENRE" HeaderText="Genre" />
+                            <asp:BoundField DataField="SHOW_DATE" HeaderText="Date"
+                                DataFormatString="{0:MMM dd, yyyy}" />
+                            <asp:BoundField DataField="SHOW_TIME" HeaderText="Time" />
+                            <asp:BoundField DataField="TICKET_PRICE" HeaderText="Price" DataFormatString="{0:C}" />
+                            <asp:TemplateField HeaderText="Holiday">
+                                <ItemTemplate>
+                                    <span
+                                        class='badge <%# Eval("IS_HOLIDAY").ToString() == "Y" ? "bg-danger" : "bg-success" %>'>
+                                        <%# Eval("IS_HOLIDAY").ToString()=="Y" ? "Yes" : "No" %>
+                                    </span>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                        <EmptyDataTemplate>
+                            <div class="text-center p-3">No movies scheduled for this theater/hall.</div>
+                        </EmptyDataTemplate>
+                    </asp:GridView>
+                </div>
             </div>
         </div>
     </asp:Content>

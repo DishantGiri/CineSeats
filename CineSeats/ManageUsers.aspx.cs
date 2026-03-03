@@ -130,6 +130,12 @@ namespace CineSeats
             LoadUsers(txtSearch.Text.Trim());
         }
 
+        protected void gvUsers_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvUsers.PageIndex = e.NewPageIndex;
+            LoadUsers(txtSearch.Text.Trim());
+        }
+
         protected void btnClear_Click(object sender, EventArgs e)
         {
             ClearForm();

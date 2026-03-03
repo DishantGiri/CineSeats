@@ -7,6 +7,11 @@ namespace CineSeats
 {
     public partial class _Default : Page
     {
+        protected System.Web.UI.WebControls.Literal litTotalUsers;
+        protected System.Web.UI.WebControls.Literal litTotalMovies;
+        protected System.Web.UI.WebControls.Literal litTotalTheaters;
+        protected System.Web.UI.WebControls.Literal litTotalTickets;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

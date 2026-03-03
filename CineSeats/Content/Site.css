@@ -1,118 +1,426 @@
-﻿/* Main Variables */
+﻿/* =============================================
+   CineSeats — Modern Dark Cinema Theme
+   ============================================= */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ---- CSS Variables ---- */
 :root {
-    --primary-color: #e50914; /* Netflix Red */
-    --secondary-color: #221f1f;
-    --bg-dark: #000000;
-    --text-light: #ffffff;
-    --accent-color: #f5f5f1;
+    --cs-red:        #e50914;
+    --cs-red-dark:   #b20710;
+    --cs-red-glow:   rgba(229, 9, 20, 0.25);
+    --cs-bg:         #0a0a0f;
+    --cs-surface:    #12121a;
+    --cs-surface2:   #1a1a26;
+    --cs-border:     rgba(255,255,255,0.08);
+    --cs-text:       #f0f0f5;
+    --cs-muted:      rgba(240,240,245,0.5);
+    --cs-radius:     14px;
+    --cs-radius-sm:  8px;
+    --cs-shadow:     0 8px 32px rgba(0,0,0,0.6);
+    --cs-transition: 0.22s ease;
 }
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-    font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    padding-top: 50px;
-    padding-bottom: 20px;
+    background-color: var(--cs-bg);
+    color: var(--cs-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.95rem;
+    padding-top: 72px;
+    padding-bottom: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Navbar Premium Styling */
-.navbar {
-    background: rgba(0, 0, 0, 0.9) !important;
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background 0.3s;
+/* =============================================
+   NAVBAR
+   ============================================= */
+.cs-navbar {
+    background: rgba(10,10,15,0.92) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--cs-border);
+    padding: 0.75rem 0;
+    transition: background var(--cs-transition);
 }
 
 .navbar-brand {
-    color: var(--primary-color) !important;
+    color: var(--cs-red) !important;
     font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+}
+
+.cs-brand-icon {
     font-size: 1.5rem;
-    letter-spacing: 1px;
+    color: var(--cs-red);
 }
 
-.nav-link {
-    color: var(--text-light) !important;
+.cs-nav-link {
+    color: rgba(255,255,255,0.75) !important;
     font-weight: 500;
-    transition: color 0.3s;
+    font-size: 0.9rem;
+    padding: 0.45rem 0.85rem !important;
+    border-radius: var(--cs-radius-sm);
+    transition: color var(--cs-transition), background var(--cs-transition);
 }
 
-.nav-link:hover {
-    color: var(--primary-color) !important;
+.cs-nav-link:hover,
+.cs-nav-link.active {
+    color: #fff !important;
+    background: rgba(255,255,255,0.08);
 }
 
-/* Card Styling */
+.cs-dropdown {
+    background: var(--cs-surface2);
+    border: 1px solid var(--cs-border);
+    border-radius: var(--cs-radius-sm);
+    box-shadow: var(--cs-shadow);
+    padding: 0.4rem;
+    min-width: 200px;
+}
+
+.cs-dropdown-item {
+    color: rgba(255,255,255,0.75) !important;
+    border-radius: 6px;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.875rem;
+    transition: background var(--cs-transition), color var(--cs-transition);
+}
+
+.cs-dropdown-item:hover,
+.cs-dropdown-item.active {
+    background: rgba(229, 9, 20, 0.15) !important;
+    color: #fff !important;
+}
+
+/* =============================================
+   PAGE WRAPPER & FOOTER
+   ============================================= */
+.cs-page-wrapper {
+    flex: 1;
+    padding-bottom: 2rem;
+}
+
+.cs-footer {
+    background: var(--cs-surface);
+    border-top: 1px solid var(--cs-border);
+    padding: 1.25rem 0;
+    margin-top: auto;
+}
+
+.cs-footer-brand {
+    color: var(--cs-red);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.cs-footer-copy {
+    color: var(--cs-muted);
+    font-size: 0.82rem;
+}
+
+/* =============================================
+   CARDS
+   ============================================= */
 .card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    backdrop-filter: blur(4px);
-    color: white;
+    background: var(--cs-surface);
+    border: 1px solid var(--cs-border) !important;
+    border-radius: var(--cs-radius) !important;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    color: var(--cs-text);
 }
 
 .card-header {
-    background: rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    font-weight: bold;
-    font-size: 1.2rem;
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid var(--cs-border);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--cs-radius) var(--cs-radius) 0 0 !important;
 }
 
-/* Button Styling */
+/* =============================================
+   STAT CARDS (Dashboard)
+   ============================================= */
+.cs-stat-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--cs-radius) !important;
+    padding: 1.5rem;
+    transition: transform var(--cs-transition), box-shadow var(--cs-transition);
+}
+
+.cs-stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+}
+
+.cs-stat-card .cs-stat-icon {
+    font-size: 2.5rem;
+    opacity: 0.2;
+    position: absolute;
+    right: 1.2rem;
+    top: 1rem;
+}
+
+.cs-stat-card .cs-stat-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    display: block;
+    line-height: 1.1;
+}
+
+.cs-stat-card .cs-stat-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.65;
+    display: block;
+    margin-top: 0.35rem;
+}
+
+.cs-stat-red   { background: linear-gradient(135deg, #2a0a0d 0%, #1a0608 100%); border-left: 3px solid var(--cs-red) !important; }
+.cs-stat-blue  { background: linear-gradient(135deg, #071b3a 0%, #04102a 100%); border-left: 3px solid #0d6efd !important; }
+.cs-stat-green { background: linear-gradient(135deg, #071a11 0%, #04100c 100%); border-left: 3px solid #198754 !important; }
+.cs-stat-gold  { background: linear-gradient(135deg, #2a1f04 0%, #1a1303 100%); border-left: 3px solid #ffc107 !important; }
+
+/* =============================================
+   FORM CONTROLS
+   ============================================= */
+.form-control,
+.form-select {
+    background-color: var(--cs-surface2) !important;
+    border: 1px solid var(--cs-border) !important;
+    color: var(--cs-text) !important;
+    border-radius: var(--cs-radius-sm) !important;
+    padding: 0.55rem 0.85rem;
+    font-size: 0.9rem;
+    transition: border-color var(--cs-transition), box-shadow var(--cs-transition);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--cs-red) !important;
+    box-shadow: 0 0 0 3px var(--cs-red-glow) !important;
+    outline: none;
+    background-color: var(--cs-surface2) !important;
+    color: var(--cs-text) !important;
+}
+
+.form-control::placeholder { color: var(--cs-muted); }
+
+.form-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--cs-muted);
+    margin-bottom: 0.4rem;
+}
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+.btn {
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-radius: var(--cs-radius-sm) !important;
+    padding: 0.5rem 1.1rem;
+    transition: all var(--cs-transition);
+}
+
 .btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    transition: transform 0.2s, background-color 0.3s;
+    background-color: var(--cs-red) !important;
+    border-color: var(--cs-red) !important;
+    color: #fff !important;
 }
 
 .btn-primary:hover {
-    background-color: #b20710;
-    border-color: #b20710;
-    transform: translateY(-2px);
+    background-color: var(--cs-red-dark) !important;
+    border-color: var(--cs-red-dark) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px var(--cs-red-glow);
 }
 
-/* Table / GridView Styling */
+.btn-outline-secondary {
+    border-color: var(--cs-border) !important;
+    color: var(--cs-muted) !important;
+}
+
+.btn-outline-secondary:hover {
+    background: rgba(255,255,255,0.06) !important;
+    color: var(--cs-text) !important;
+    border-color: rgba(255,255,255,0.2) !important;
+}
+
+.btn-outline-info    { border-color: rgba(13,202,240,0.5) !important; color: #0dcaf0 !important; }
+.btn-outline-info:hover    { background: rgba(13,202,240,0.12) !important; }
+.btn-outline-danger  { border-color: rgba(220,53,69,0.5) !important; color: #dc3545 !important; }
+.btn-outline-danger:hover  { background: rgba(220,53,69,0.12) !important; }
+.btn-outline-success { border-color: rgba(25,135,84,0.5) !important; color: #198754 !important; }
+.btn-outline-success:hover { background: rgba(25,135,84,0.12) !important; }
+
+/* =============================================
+   GRIDVIEW / TABLE
+   ============================================= */
 .grid-view {
     width: 100%;
-    margin: 20px 0;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 8px;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.02);
+    border-collapse: collapse;
+    font-size: 0.875rem;
 }
 
 .grid-view th {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--primary-color);
-    padding: 12px;
-    text-align: left;
+    background: rgba(255,255,255,0.04);
+    color: var(--cs-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--cs-border);
+    white-space: nowrap;
 }
 
 .grid-view td {
-    padding: 12px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: middle;
+    color: var(--cs-text);
 }
 
-.grid-view tr:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+.grid-view tr:last-child td { border-bottom: none; }
+
+.grid-view tr:hover td {
+    background: rgba(255,255,255,0.03);
 }
 
-/* Dashboard Stats */
-.stat-card {
-    text-align: center;
-    padding: 20px;
-    border-radius: 15px;
-    background: linear-gradient(135deg, rgba(229, 9, 20, 0.2), rgba(0,0,0,0.5));
+/* =============================================
+   PAGINATION
+   ============================================= */
+.grid-pager { padding: 1rem 0; text-align: center; }
+.grid-pager table { margin: 0 auto; }
+.grid-pager td { padding: 0 !important; border: none !important; background: transparent !important; }
+
+.grid-pager a,
+.grid-pager span {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 0 2px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.06);
+    color: var(--cs-text);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: all var(--cs-transition);
 }
 
-.stat-value {
-    font-size: 2.5rem;
-    font-weight: bold;
-    display: block;
+.grid-pager a:hover { background: rgba(229,9,20,0.2); color: #fff; }
+.grid-pager span { background: var(--cs-red); color: #fff; }
+
+/* =============================================
+   PAGE HEADERS
+   ============================================= */
+.cs-page-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--cs-border);
 }
 
-.stat-label {
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    opacity: 0.7;
+.cs-page-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.cs-page-header .cs-page-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    background: var(--cs-red-glow);
+    color: var(--cs-red);
+    flex-shrink: 0;
+}
+
+/* =============================================
+   BADGE
+   ============================================= */
+.badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.3em 0.65em;
+    border-radius: 5px;
+}
+
+/* =============================================
+   LIST GROUP (Dashboard quick links)
+   ============================================= */
+.list-group-item {
+    background: transparent !important;
+    border-color: var(--cs-border) !important;
+    color: var(--cs-text) !important;
+    font-size: 0.9rem;
+    transition: background var(--cs-transition);
+}
+
+.list-group-item:hover {
+    background: rgba(229,9,20,0.08) !important;
+    border-color: rgba(229,9,20,0.2) !important;
+}
+
+/* =============================================
+   PROGRESS BAR
+   ============================================= */
+.progress {
+    background: rgba(255,255,255,0.07) !important;
+    border-radius: 99px !important;
+}
+
+.progress-bar {
+    border-radius: 99px !important;
+    transition: width 0.6s ease;
+}
+
+/* =============================================
+   ALERTS / TOASTS (future use)
+   ============================================= */
+.alert-dark-custom {
+    background: rgba(229,9,20,0.1);
+    border: 1px solid rgba(229,9,20,0.3);
+    color: #f5a5a9;
+    border-radius: var(--cs-radius-sm);
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+}
+
+/* =============================================
+   SCROLLBAR (Webkit)
+   ============================================= */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--cs-bg); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+
+/* =============================================
+   RESPONSIVE UTILITIES
+   ============================================= */
+@media (max-width: 768px) {
+    .cs-stat-card .cs-stat-value { font-size: 1.75rem; }
+    .cs-page-header h2 { font-size: 1.25rem; }
 }
