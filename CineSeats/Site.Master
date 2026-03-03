@@ -5,7 +5,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> — CineSeats</title>
+    <title><%: Page.Title %> - CineSeats</title>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
@@ -92,28 +92,15 @@
                         <span class="cs-footer-copy ms-3">&copy; <%: DateTime.Now.Year %> Cinema Management System</span>
                     </div>
                     <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
-                        <span class="cs-footer-copy">Built with ASP.NET Web Forms &amp; Oracle DB</span>
+                        <span class="cs-footer-copy">ASP.NET Web Forms &amp; Oracle DB</span>
                     </div>
                 </div>
             </div>
         </footer>
+        <asp:PlaceHolder runat="server">
+            <script src='<%: ResolveUrl("~/Scripts/bootstrap.bundle.min.js") %>'></script>
+            <script src='<%: ResolveUrl("~/Scripts/site-nav.js") %>'></script>
+        </asp:PlaceHolder>
     </form>
-    <asp:PlaceHolder runat="server">
-        <script src="<%: ResolveUrl("~/Scripts/bootstrap.bundle.min.js") %>"></script>
-    </asp:PlaceHolder>
-    <script>
-        // Active nav link highlight
-        (function () {
-            var path = window.location.pathname.toLowerCase();
-            document.querySelectorAll('.cs-nav-link, .cs-dropdown-item').forEach(function (el) {
-                var href = (el.getAttribute('href') || '').toLowerCase();
-                if (href && href !== '/' && path.indexOf(href.replace(/^.*\//, '')) > -1) {
-                    el.classList.add('active');
-                } else if ((path === '/' || path.endsWith('default.aspx')) && href === '/') {
-                    el.classList.add('active');
-                }
-            });
-        })();
-    </script>
 </body>
 </html>

@@ -2,9 +2,6 @@
    CineSeats — Modern Dark Cinema Theme
    ============================================= */
 
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
 /* ---- CSS Variables ---- */
 :root {
     --cs-red:        #e50914;

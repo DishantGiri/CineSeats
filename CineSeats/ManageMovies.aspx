@@ -23,19 +23,19 @@
                     <asp:HiddenField ID="hfMovieId" runat="server" />
                     <div class="mb-3">
                         <label class="form-label">Title</label>
-                        <asp:TextBox ID="txtTitle" runat="server" CssClass="form-control" placeholder="e.g. Inception"></asp:TextBox>
+                        <asp:TextBox ID="txtTitle" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Duration (mins)</label>
-                        <asp:TextBox ID="txtDuration" runat="server" CssClass="form-control" TextMode="Number" placeholder="148"></asp:TextBox>
+                        <asp:TextBox ID="txtDuration" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Language</label>
-                        <asp:TextBox ID="txtLanguage" runat="server" CssClass="form-control" placeholder="e.g. English"></asp:TextBox>
+                        <asp:TextBox ID="txtLanguage" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Genre</label>
-                        <asp:TextBox ID="txtGenre" runat="server" CssClass="form-control" placeholder="e.g. Action, Drama"></asp:TextBox>
+                        <asp:TextBox ID="txtGenre" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Release Date</label>
@@ -64,23 +64,19 @@
                             AllowPaging="True" PageSize="7" OnPageIndexChanging="gvMovies_PageIndexChanging">
                             <PagerStyle CssClass="grid-pager" />
                             <Columns>
-                                <asp:BoundField DataField="MOVIE_ID" HeaderText="ID" ItemStyle-Width="50px" />
+                                <asp:BoundField DataField="MOVIE_ID" HeaderText="ID" />
                                 <asp:BoundField DataField="TITLE" HeaderText="Title" />
                                 <asp:BoundField DataField="LANGUAGE" HeaderText="Language" />
                                 <asp:BoundField DataField="GENRE" HeaderText="Genre" />
-                                <asp:BoundField DataField="RELEASE_DATE" HeaderText="Release" DataFormatString="{0:MMM d, yyyy}" />
-                                <asp:TemplateField HeaderText="Actions" ItemStyle-Width="120px">
+                                <asp:BoundField DataField="RELEASE_DATE" HeaderText="Release" DataFormatString="{0:yyyy-MM-dd}" />
+                                <asp:TemplateField HeaderText="Actions">
                                     <ItemTemplate>
                                         <asp:LinkButton runat="server" CommandName="EditMovie"
                                             CommandArgument='<%# Eval("MOVIE_ID") %>'
-                                            CssClass="btn btn-sm btn-outline-info me-1">
-                                            <i class="bi bi-pencil"></i>
-                                        </asp:LinkButton>
+                                            CssClass="btn btn-sm btn-outline-info me-1">Edit</asp:LinkButton>
                                         <asp:LinkButton runat="server" CommandName="Delete"
                                             CssClass="btn btn-sm btn-outline-danger"
-                                            OnClientClick="return confirm('Delete this movie?');">
-                                            <i class="bi bi-trash"></i>
-                                        </asp:LinkButton>
+                                            OnClientClick="return confirm('Delete?');">Del</asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
